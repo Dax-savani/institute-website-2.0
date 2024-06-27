@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import {
   Box,
+  Button,
   Container,
   Grid,
   Typography,
@@ -36,6 +37,7 @@ const MainHomePage = () => {
   const isLgScreen = useMediaQuery(theme.breakpoints.down("1050"));
   const isMdScreen = useMediaQuery(theme.breakpoints.down("900"));
   const isSmScreen = useMediaQuery(theme.breakpoints.down("800"));
+  const isXScreen = useMediaQuery(theme.breakpoints.down("500"));
   const stopAnimation = useMediaQuery(theme.breakpoints.down("700"));
 
   const { contextSafe } = useGSAP();
@@ -44,9 +46,11 @@ const MainHomePage = () => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: ".heroSection",
+        scrub: stopAnimation ? 3 : 6,
+        // scrub:  5,
         start: "top top",
-        end: "bottom top",
-        scrub: 6,
+        end: "bottom 100%",
+        markers: true,
         ease: "power1.inOut",
       },
     });
@@ -116,16 +120,39 @@ const MainHomePage = () => {
       opacity: 1,
     });
     tl.to(".mainLogo", {
+      duration: 1.5,
       scale: 1.5,
-      rotate: 360,
       right: stopAnimation ? "35%" : "7%",
       y: stopAnimation ? 200 : 380,
     });
+    tl.to(".mainLogo", {
+      right: stopAnimation ? "35%" : "45%",
+      y: isMdScreen ? (stopAnimation ? (isXScreen ? 1150 : 1400) : 950) : 750,
+      scale: 2,
+      rotate: 360,
+      duration: 1.5,
+    });
+    tl.to(".mainLogo", {
+      // delay: 2,
+      right: "90%",
+      y: 1070,
+      scale: 0,
+    });
+    tl.to(".colorAni", {
+      scale: 1,
+    },"button");
+    tl.to(
+      ".animationBtn",
+      {
+        color: "white !important",
+      },
+      "button"
+    );
   }, []);
   return (
     <>
-      <Box>
-        <Container maxWidth="xl" className="heroSection">
+      <Box className="heroSection">
+        <Container maxWidth="xl">
           <Box
             sx={{
               display: "flex",
@@ -284,7 +311,7 @@ const MainHomePage = () => {
           </Box>
         </Container>
 
-        <Container sx={{ position: "relative" }} className="heroSection">
+        <Container sx={{ position: "relative" }}>
           <Box sx={{ mt: stopAnimation ? "0px" : "550px" }}>
             <Typography
               component={"h2"}
@@ -360,9 +387,6 @@ const MainHomePage = () => {
               </Grid>
             </Box>
           </Box>
-          {/* </Container>
-
-        <Container> */}
           <Box sx={{ mt: "200px" }}>
             <Grid container>
               <Grid item xs={12} sm={9}>
@@ -391,159 +415,40 @@ const MainHomePage = () => {
                   indelible mark on the canvas of the future.
                 </Typography>
               </Grid>
-              {/* <Grid item xs={4}>
-                <Box>
-
-                </Box>
-              </Grid> */}
             </Grid>
           </Box>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore
-          laudantium, tenetur sint quasi voluptatibus laborum assumenda!
-          Recusandae neque explicabo ab ipsum cum dolore nulla eligendi
-          voluptatem provident natus laboriosam ut eius incidunt nihil
-          exercitationem nesciunt laborum obcaecati, aperiam quis alias? Esse
-          placeat molestiae delectus ipsum, dolorum vitae voluptatum, harum
-          possimus nostrum dicta eveniet recusandae beatae porro repudiandae
-          assumenda dolor ullam quaerat sapiente natus exercitationem maxime eos
-          maiores. Animi, totam. Veritatis quae, cupiditate quaerat at nam iusto
-          quidem voluptatem commodi aliquid et molestiae ipsam ea quis officia
-          unde error? Maiores totam debitis assumenda quae consequatur minima
-          aperiam veritatis dolore in sequi autem recusandae dolores cupiditate
-          dolorum quidem nostrum vel, odio ipsum ea eaque commodi a! Totam,
-          atque quas. Vel reprehenderit fugiat deleniti? Molestias vel expedita,
-          quas amet quod, explicabo rem laboriosam quaerat eius, error maiores
-          corrupti inventore asperiores excepturi exercitationem placeat
-          necessitatibus optio neque est! Dicta voluptatum adipisci veritatis
-          recusandae, odit similique sunt harum debitis beatae quae aliquam
-          nostrum repellendus facilis. Molestiae commodi nam optio a minus earum
-          mollitia enim. Omnis quaerat quo, sunt iure voluptatibus esse beatae
-          ex voluptates, sit, neque perspiciatis? Recusandae odio hic unde
-          libero dignissimos, numquam vitae aut quod nesciunt eligendi ipsam
-          aspernatur perspiciatis. Porro sed, beatae animi nobis temporibus
-          totam aut voluptas tenetur voluptatibus sequi quos laudantium ipsa
-          dolores cumque nesciunt quas eius odio quia! Nesciunt fuga reiciendis
-          repudiandae, libero doloribus dolore? Qui nobis numquam id eligendi
-          minus cum unde! Id eos debitis quasi rerum quia? Adipisci sint
-          molestiae alias quaerat itaque beatae vero dolore, nam magni a iusto
-          pariatur. Veritatis aliquid voluptas quas impedit unde cum mollitia
-          eveniet numquam, ducimus obcaecati libero beatae architecto laborum!
-          Dolorem necessitatibus reiciendis praesentium, suscipit pariatur
-          voluptate, eaque totam deleniti in tempore perspiciatis ex saepe quas,
-          minima maxime aliquam beatae officiis! Voluptates numquam enim hic
-          fugiat quos iure magnam nostrum. Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Perferendis tempore labore asperiores
-          aperiam? Dolores sint incidunt officia natus quasi, sit quia! Dolore
-          veritatis quaerat aspernatur, laudantium optio omnis tempora
-          temporibus ad vero, inventore in ab? Sapiente quis minus in saepe at
-          hic dolor velit debitis cupiditate. Consequuntur ab voluptates labore
-          aspernatur magnam aperiam eos nemo ratione nihil repellendus sint
-          possimus maiores in at minima hic facilis magni vero explicabo, qui
-          repellat impedit fuga. Esse id veniam nesciunt suscipit perspiciatis
-          delectus nisi, similique accusantium, officia dolor iste quos sapiente
-          quaerat, magni fugiat recusandae neque optio molestiae possimus nihil
-          officiis corrupti laboriosam? Saepe quos animi consectetur
-          exercitationem modi alias, quibusdam accusamus, dolores id dolorem
-          aspernatur enim quaerat cumque at aliquam ipsa assumenda facere. Iusto
-          ea non deleniti provident, itaque cum quasi quibusdam sequi mollitia
-          repellat ducimus illum, natus fuga doloribus, dolorum blanditiis ullam
-          culpa asperiores a sed ratione voluptatum amet in. Unde provident vero
-          nostrum dignissimos molestias amet doloremque nulla ex. Omnis ex fugit
-          explicabo neque sunt, itaque debitis. Corrupti ad, magni eaque
-          accusamus commodi tempora. Tempore, harum ut neque non numquam
-          voluptatibus illum praesentium laboriosam ea, dolores nobis, quis at
-          doloremque similique magnam maxime animi ipsa maiores. Eos ratione
-          cumque error, reprehenderit maxime earum veniam velit saepe molestias
-          quam. Sequi porro in fugiat quae corporis blanditiis voluptatem quia
-          saepe harum? Magni est, exercitationem doloribus tenetur ipsam,
-          maiores, quas harum nisi officiis quae sit asperiores quo praesentium
-          quod incidunt quos libero odit aspernatur minima suscipit qui? Vitae,
-          enim sit? Iste voluptate exercitationem harum cumque praesentium
-          sequi, architecto voluptatum alias ea quod minus nostrum tenetur iusto
-          ipsum quas accusantium quibusdam itaque laudantium magni quaerat id
-          enim? At, deleniti placeat! Aspernatur quasi, molestias exercitationem
-          commodi quas tempore beatae fugiat ipsum, id repellat autem. Quidem
-          nobis sequi cupiditate fuga eligendi amet, animi quisquam illum optio
-          saepe labore ipsum enim possimus earum autem molestias suscipit, totam
-          a nemo sunt molestiae cum omnis? Ipsam vel iste aliquam odit
-          consequatur, similique impedit veniam incidunt eos cum ipsa hic
-          obcaecati, corporis reprehenderit natus tempore nesciunt quas quidem
-          saepe accusantium officia nobis ea in delectus. Nobis atque earum
-          suscipit mollitia enim, sit necessitatibus ad quam, fugiat animi
-          excepturi, laudantium adipisci sunt et velit facilis maiores fuga.
-          Consectetur alias neque, tenetur debitis nobis commodi beatae
-          deleniti, quis necessitatibus, corporis iste suscipit nam voluptates
-          mollitia ab quas excepturi itaque natus cumque totam? Nisi odit
-          officiis maiores natus aspernatur nam magnam deleniti veritatis
-          corporis. Non labore incidunt error? Totam sed consequatur
-          dignissimos? Illum debitis temporibus sit, incidunt illo provident
-          ipsa sequi non nisi corrupti perferendis minus quo suscipit id
-          voluptas et dignissimos, facere labore explicabo consequatur modi
-          maxime blanditiis esse! Ipsa ad repellat tenetur ducimus, nihil cum
-          unde ipsam consequatur suscipit temporibus modi excepturi cupiditate
-          commodi deleniti non consequuntur deserunt atque officia inventore?
-          Ipsa esse necessitatibus illum sunt voluptatum natus. Autem numquam
-          repellat atque nemo doloremque! Quam necessitatibus nobis omnis
-          laboriosam eligendi delectus vero, repudiandae corrupti cumque facilis
-          facere aliquam autem quaerat molestias! Ullam doloremque iste esse.
-          Consectetur, asperiores sint magnam quam nesciunt maiores unde!
-          Laborum architecto provident ipsa? Temporibus modi a culpa consectetur
-          nemo ipsam reiciendis exercitationem! Sapiente quidem quasi totam
-          adipisci perspiciatis, fuga asperiores atque autem reprehenderit
-          obcaecati velit, dolor aspernatur soluta officiis cumque libero odit
-          dicta voluptatem voluptatibus vero nesciunt iure non! Dolor alias
-          deleniti hic, eligendi cupiditate consequatur quae odit animi
-          doloremque. Velit mollitia quas eum praesentium quae harum, rerum,
-          soluta ad ipsum facere dolore quidem nulla. Eligendi unde fugiat
-          ducimus enim error pariatur deserunt maxime at ipsa, tenetur earum
-          cupiditate nam quisquam explicabo eaque ullam dignissimos consectetur
-          corrupti tempora architecto suscipit repellat quam debitis? Hic
-          obcaecati nihil ullam voluptates rerum velit inventore delectus quo
-          iusto itaque, dignissimos, atque numquam sit amet, iure odit aliquam
-          magnam temporibus! Architecto harum repellendus nam qui neque ducimus
-          impedit nesciunt. Ipsa ducimus a repellendus possimus fuga officiis
-          quas ad recusandae laboriosam nostrum illum ratione repudiandae minima
-          fugit itaque rerum iure exercitationem quos tempora consequuntur
-          dolor, qui veritatis? Ducimus placeat officiis obcaecati nihil, odit,
-          tenetur minima impedit perspiciatis necessitatibus in libero quas
-          mollitia! Reiciendis nulla harum quas! Voluptatem perferendis hic id
-          temporibus est distinctio aut modi quam repellendus quod tempore
-          obcaecati quo inventore reprehenderit deleniti cum, veritatis, neque
-          odio beatae sapiente dicta porro veniam ab minus! Ab alias saepe
-          ipsum, facere soluta, nisi voluptates obcaecati expedita dolor nulla
-          recusandae? Vitae enim dicta, quam autem explicabo facilis est,
-          eveniet odio excepturi veritatis nulla quisquam facere distinctio
-          incidunt itaque eos debitis aspernatur doloremque ipsum illum? Minima
-          quo doloribus quam ducimus nemo qui provident officia harum, quod,
-          unde, at quis eligendi! Sit voluptate voluptatem inventore laudantium
-          labore in. Iste impedit ullam rem dolores assumenda reiciendis soluta
-          vero eos blanditiis ducimus voluptate delectus, architecto, labore
-          cupiditate velit aliquam tempora amet molestiae facere esse magni aut
-          officia, sed possimus? Earum laborum exercitationem nostrum, iusto
-          voluptas dolorem quaerat! Provident hic adipisci ullam assumenda
-          officia earum nihil ad, deleniti unde itaque modi maiores a aut culpa
-          eos, fugit et sed? Quia quaerat dolores dolor, atque eveniet
-          consectetur a aspernatur! Possimus, illo? Adipisci dolores eaque
-          architecto alias, repellat eveniet mollitia perferendis, expedita,
-          aspernatur eum tempora est reiciendis? Architecto ab nesciunt quisquam
-          cum quis quidem aspernatur exercitationem, unde iusto, ipsum
-          consectetur enim est maiores illum asperiores dicta. Nihil architecto
-          fugit obcaecati eum corporis culpa nemo? Nam reprehenderit facilis
-          ratione iure eveniet atque dolorem at itaque asperiores, accusamus
-          magnam ducimus iusto, aspernatur eum quibusdam sed hic tempora
-          deleniti animi architecto provident fuga? Minima nobis ipsa corporis
-          labore obcaecati beatae sequi distinctio. Libero, assumenda quis magni
-          et atque dignissimos numquam eveniet aliquid perspiciatis fugiat,
-          aperiam illo necessitatibus corporis consequuntur qui maxime impedit
-          ipsam quas nesciunt labore ab. Doloremque id, nemo doloribus qui
-          nostrum officia atque. Tempore, totam dolore non maiores possimus
-          aliquid nulla sequi fugiat officia rerum et, odio architecto fugit. Ut
-          sit explicabo saepe ad iure deleniti voluptates nobis! Optio corporis
-          possimus harum omnis. Doloremque reprehenderit pariatur temporibus
-          fugit natus. Dolorem, accusantium sunt numquam, est ipsa iste
-          expedita, possimus incidunt temporibus atque obcaecati inventore vitae
-          laboriosam id doloribus consequuntur. Blanditiis itaque soluta modi
-          dolorem!
+          <Box sx={{ mt: stopAnimation ? "300px" : "400px" }}></Box>
+          <Box sx={{ mt: stopAnimation ? "350px" : "500px" }}>
+            <Box>
+              <Button
+                className="animationBtn"
+                sx={{
+                  position: "relative",
+                  borderRadius: "30px",
+                  px: "23px",
+                  backgroundColor: "white",
+                  border: "1px solid #1F1754 !important",
+                  color: "#1F1754",
+                  overflow: "hidden",
+                }}
+                variant="outlined"
+              >
+                01/05
+                <Box
+                  className="colorAni"
+                  sx={{
+                    position: "absolute",
+                    height: "100%",
+                    width: "100%",
+                    borderRadius: "30px",
+                    transform: "scale(0)",
+                    backgroundColor: "#1F1754",
+                  }}
+                ></Box>
+              </Button>
+            </Box>
+          </Box>
+        
         </Container>
       </Box>
     </>
