@@ -12,9 +12,9 @@ body {
   sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* background-color: red; */
-  width: 100%;
+  /*width: 100%;*/
   overflow-x: hidden;
+  /*background: red;*/
 }
 
 code {
@@ -28,7 +28,4 @@ code {
   border: none;
   font-size: 15px;
   border-radius: 25px;
-}
-#main{
-  overflow: hidden;
 }
